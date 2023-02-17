@@ -3,21 +3,11 @@ import morgan from "morgan";
 
 // local imports
 import authRoutes from "./routes/auth";
-import {AppDataSource} from './config/app-data-source';
+import userRouter from "./routes/userRoutes";
+
+
 import { User } from "./entity/user.entity";
 const app: Application = express();
-
-
-
-// Database initializing
-
-AppDataSource
-    .initialize()
-    .then(async()=>{
-        console.log("Datasource has been initiliazed");
-        //const user = new User();
-    })
-    .catch((err)=>console.log("Error by: ",err))
 
 
 
@@ -31,12 +21,13 @@ app.set("port", 4000);
 app.use(morgan('dev'))
 // defining routes
 app.use(authRoutes);
+app.use(userRouter);
 
 
-app.get("/all_users", async (req: Request, res:Response)=>{
-    const results = await AppDataSource.getRepository(User).find();
-    res.json(results)
-})
+// app.get("/all_users", async (req: Request, res:Response)=>{
+//     const results = await AppDataSource.getRepository(User).find();
+//     res.json(results)
+// })
 
 export default app;
 
