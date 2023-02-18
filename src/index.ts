@@ -1,6 +1,9 @@
 
 import app from "./app";
 import { AppDataSource } from './config/app-data-source';
+import dotenv from 'dotenv';
+dotenv.config();
+
 AppDataSource
     .initialize()
     .then(async () => {

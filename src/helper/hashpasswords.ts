@@ -13,7 +13,6 @@ export const matchPasswords = async(password: string,
             return await bcrypt.compare(password, possiblePasswords);
         }catch(error){
             if (error instanceof Error){
-                console.error(error.message);
                 return false;
             }
         }

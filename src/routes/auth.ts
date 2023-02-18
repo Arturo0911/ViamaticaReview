@@ -1,10 +1,10 @@
 import {Router, Request, Response} from 'express';
 
+import { loginUser } from '../controllers/user.controllers';
+
 const router: Router = Router();
 
 
-router.get('/', (req:Request, res:Response)=>{
-    res.send({"message":"authentication routes"});
-})
+router.post('/auth',loginUser);
 
 export default router;
