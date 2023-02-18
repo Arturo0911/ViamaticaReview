@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
-import getAllUsers  from "../helper/UserQueries";
+import { getUsers,newUser, getUser} from "../controllers/user.controllers";
 
 const userRouter:Router = Router();
 
-userRouter.get('/all_user', (req:Request, res:Response)=>{
-    res.send(getAllUsers());
-});
+userRouter.get('/all_user', getUsers);
+userRouter.get('/all_user/:id', getUser);
+userRouter.post('/new_user', newUser);
 
 export default userRouter;

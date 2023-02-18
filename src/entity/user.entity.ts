@@ -1,9 +1,9 @@
 
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, CreateDateColumn, BaseEntity, BeforeInsert } from "typeorm";
 import  {Appartment} from './appartment.entity';
-
+import bcrypt from 'bcryptjs';
 @Entity()
-export class User {
+export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -13,16 +13,16 @@ export class User {
     @Column()
     lastName: string
 
-    @Column({ type: 'timestamptz' })
+    @CreateDateColumn({select: false})
     createdAt: Date
 
-    @Column({ type: 'timestamptz' })
+    @CreateDateColumn({select: false})
     modifiedAt: Date
 
-    @Column({ type: 'timestamptz' })
+    @CreateDateColumn({select: false})
     deletedAt: Date
 
-    @Column({default: true})
+    @Column({default: true,select: false})
     status: boolean
 
 
@@ -31,10 +31,26 @@ export class User {
 
     @Column()
     email: string
-
-    @Column()
+    
+    @Column({select: false})
     password: string
 
     @OneToMany(()=> Appartment, (appartment) => appartment.user)
     appartments: Appartment[]
+
+    // @BeforeInsert()
+    // async hashPassword(){
+    //     console.log("before ", this.password);
+        
+    //     this.password = await bcrypt.hash(this.password, 12);
+    //     console.log("after ", this.password);
+        
+    // }
+
+
+    // static async comparePasswords(
+    //     possiblePassword: string,
+    //     hashedPassword: string){
+    //         return await bcrypt.compare(possiblePassword, hashedPassword);
+    // }
 }
