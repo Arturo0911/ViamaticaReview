@@ -4,12 +4,11 @@ import morgan from "morgan";
 // local imports
 import authRoutes from "./routes/auth";
 import userRouter from "./routes/userRoutes";
+import appartRouter from "./routes/appartmentRoutes";
 import cors from 'cors';
 
 import { User } from "./entity/user.entity";
 const app: Application = express();
-
-
 
 
 // settings
@@ -24,34 +23,7 @@ app.use(express.json());
 // defining routes
 app.use(authRoutes);
 app.use(userRouter);
+app.use(appartRouter);
 
-
-// app.get("/all_users", async (req: Request, res:Response)=>{
-//     const results = await AppDataSource.getRepository(User).find();
-//     res.json(results)
-// })
 
 export default app;
-
-
-
-
-// class App {
-
-//     public express: express.Application;
-
-
-//     constructor(){
-//         this.express = express();
-//         this.middleware();
-//         this.routes();
-//     }
-
-//     private middleware():void{
-//         this.express.use(morgan("dev"));
-//     }
-
-//     private routes(){
-//         this.express.use(authRoutes);
-//     }
-// }

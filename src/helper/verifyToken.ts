@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 export interface IPayload{
     id: number;
     iat: number;
+    exp: number;
 }
 
 export const TokenValidation = (req: Request, 
@@ -16,6 +17,7 @@ export const TokenValidation = (req: Request,
     
             const payload = jwt.verify(token, process.env["SECRET_KEY"] || '') as IPayload;
             console.log(payload);
+            req.id = payload.id;
             next();
         }catch(error){
             if (error instanceof Error){

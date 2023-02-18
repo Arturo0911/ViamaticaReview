@@ -1,10 +1,10 @@
 
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, BaseEntity } from "typeorm";
 import { User } from "./user.entity";
 
 
 @Entity()
-export class Appartment {
+export class Appartment extends BaseEntity {
     @PrimaryGeneratedColumn()
     appartmentId: number
 

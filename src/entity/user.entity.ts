@@ -22,7 +22,7 @@ export class User extends BaseEntity {
     @CreateDateColumn({select: false})
     deletedAt: Date;
 
-    @Column({default: true,select: false})
+    @Column({default: true})
     status: boolean;
 
 

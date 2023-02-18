@@ -9,7 +9,7 @@ export const AppDataSource = new DataSource({
     host: "localhost",
     port: 5432,
     username: "postgres",
-    password: "arturo_root",
+    password: "<your password>",
     database: "viamaticareview",
     synchronize: true,
     logging: true,
